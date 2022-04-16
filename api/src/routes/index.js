@@ -27,8 +27,8 @@ router.get('/countries', async (req, res)=> {
                         model: Activity,
                         attributes: ["id","name","difficulty","duration","season"],
                         through: { attributes: [] },
-                    }
-                })
+                }
+            })
                 // si la db esta vacia vamos a llenarla con los datos de la api
                 if(!checkDb.length){
                 //nos traemos toda la info de la api
