@@ -3,20 +3,24 @@ import {Routes , Route} from 'react-router-dom'
 //import {getCountryDetail, getCountryName} from './actions/actions.js';
 //import { useDispatch , useSelector} from 'react-redux';
 //import {useEffect} from 'react';
-import {Countries} from './components/Countries.jsx'
-import {CountryDetail} from './components/CountryDetail.jsx'
-import {LandingPage} from './components/LandingPage.jsx'
-
+import {Countries} from './components/Countries.jsx';
+import {CountryDetail} from './components/CountryDetail.jsx';
+import {LandingPage} from './components/LandingPage.jsx';
+import {Header} from './components/Header.jsx';
+import {ActForm} from './components/ActForm.jsx';
+import {useLocation} from 'react-router-dom';
 
 
 function App() {
+  const {pathname} = useLocation();
   return (
     <div className="App">
-      <h1>Henry Countries</h1>
+      {pathname === '/' ? null : <Header />}
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<LandingPage />}  />
         <Route path="/home" element={<Countries />} />
         <Route path="/countries/:id" element={<CountryDetail />} />
+        <Route path="/activity" element={<ActForm />} />
       </Routes>
     </div>
   );

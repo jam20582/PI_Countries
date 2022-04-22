@@ -12,57 +12,64 @@ const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-
+const fillDB = async ()=>{
+    try{
+        //comprobamos que la db este con datos  
+        let checkDb = await Country.findAll()
+            // si la db esta vacia vamos a llenarla con los datos de la api
+            if(!checkDb.length){
+            //nos traemos toda la info de la api
+            const countries = await infoApi()
+            //inyectamos los datos a la db
+            await Country.bulkCreate(countries)             
+            }
+    } catch (error){
+        console.log(error) 
+    }
+}
 //GET /countries y GET /countries?name="..."
 router.get('/countries', async (req, res)=> {
     //si llegase a venir por query tomamos el name
     const {name} = req.query;
 
-    //si no hay name es porque ingreso a la ruta /countries
-    if(!name){
-        try{
-            //comprobamos que la db este con datos
-            let checkDb = await Country.findAll({
-                include: {
-                        model: Activity,
-                        attributes: ["id","name","difficulty","duration","season"],
-                        through: { attributes: [] },
-                }
-            })
-                // si la db esta vacia vamos a llenarla con los datos de la api
-                if(!checkDb.length){
-                //nos traemos toda la info de la api
-                const countries = await infoApi()
-                //inyectamos los datos a la db
-                await Country.bulkCreate(countries)
-                
-                return res.json(countries)             
-                }
-            //devolvemos un mensaje de exito tras la carga de la db 
-            res.json(checkDb)
-        } catch (error){
-            console.log(error) 
-        }
-    // por el else sabemos que ingresamos a la ruta /countries?name='...'    
-    } else {
-        try {
-            //hacemos una busqueda en la db de todos los nombres que puedan incluir el name de la query
-            const nameSearch = await Country.findAll({
+    let options = {}
+
+    try {
+        await fillDB()
+        if(name){
+            options = {
                 where:{
                     name: {
                         [Op.iLike]: `%${name}%`,
                     }
                 }
-            })
-            //si no arroja resultados mostramos un mensaje de error
-            if(!nameSearch.length) return res.status(404).send(`El nombre "${name}" no arrojo ningun resultado`)
-            //sino devolvemos lo que haya coincidido con la busqueda
-            res.json(nameSearch)
-        } catch (error) {
-            console.log(error)
+            }
         }
+        const nameSearch = await Country.findAll({...options, include: {
+            model: Activity,
+            attributes: ["id","name","difficulty","duration","season"],
+            through: { attributes: [] },
+    }})
+        if(!nameSearch.length) return res.status(404).send(`El nombre "${name}" no arrojo ningun resultado`)
+        //sino devolvemos lo que haya coincidido con la busqueda
+        res.json(nameSearch)
+
+    } catch (error) {
+        res.json({error: 'no se encontro paises'})
     }
-});
+});  
+ 
+
+//si no hay name es porque ingreso a la ruta /countries
+   
+    // por el else sabemos que ingresamos a la ruta /countries?name='...'    
+    
+            //hacemos una busqueda en la db de todos los nombres que puedan incluir el name de la query
+            
+            //si no arroja resultados mostramos un mensaje de error
+            
+
+  
 
 //GET /countries/{idPais}:
 router.get('/countries/:id', async (req, res)=>{
@@ -140,13 +147,20 @@ router.post('/activity', async (req,res)=>{
             const createdActivity = await createAct.addCountries(findCountries);
             return res.send(createdActivity);
         } else {
-            return res.send('Ya existe la actividad');
+            return res.send('Ya existe la actividad');  
         }
         
     } catch (error) {
         console.log(error)
     }
 });
+
+router.get('/activities', (req, res) => {
+    Activity.findAll()
+        .then((result)=> res.json(result))
+        .catch((error) => res.status(404).json('Error con la base de datos de actividades'))
+            
+})
 
 
 module.exports = router;

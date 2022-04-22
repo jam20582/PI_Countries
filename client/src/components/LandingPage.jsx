@@ -2,12 +2,14 @@ import React from 'react'
 import mapa from '../img/mapa.png'
 import {Link} from 'react-router-dom';
 
-export function LandingPage() {
 
+export function LandingPage() {
+  
   return (
-    <div>
-        
-        <Link to='/home'><img src={mapa} alt='imagen'/></Link>
+    <div className="landing">
+      <button className="light-button">    
+          <Link to='/home'><img src={mapa} alt='Click para ingresar' /></Link>
+      </button>
     </div>
   )
 }
