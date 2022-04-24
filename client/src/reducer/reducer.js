@@ -48,7 +48,6 @@ function reducer(state=initialState, {type, payload}){
         case POST_ACTIVITY:{
             return {
                 ...state,
-                allCountries: payload
             }
         }
 

@@ -1,0 +1,65 @@
+.container{
+    width: 95vw;
+    height: auto;
+    margin: 0 auto;
+    padding: 16px;
+}
+
+.containerDouble{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    align-items: center;
+    width: 100%;
+    height: auto;
+    grid-gap: 48px;
+    padding: 16px 0;
+    justify-content: center;
+}
+
+.containerDouble .info p{
+    font-weight: 600;
+    font-size: 16px;
+    padding: 8px 0px;
+}
+.containerDouble img{
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: fill;
+}
+.containerDouble .description, .containerDouble .image{
+    display: grid;
+    grid-template-columns: auto auto;
+    height: 100%;
+}
+
+.table {
+    border: 3px solid #000000;
+    width: 100%;
+    text-align: left;
+}
+.table td, table th {
+    border: 1px solid #000000;
+    padding: 5px 4px;
+}
+
+.backButton{
+    border: 1px solid white;
+    box-shadow: 0px 0px 3px grey;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    color: darkblue;
+    margin: 8px 8px 8px 40px;
+    padding: 4px 16px;
+    width: auto;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.backButton:hover{
+    box-shadow: 0px 2px 4px grey;
+}
+
+.link{
+    text-decoration: none;
+    color: darkblue;
+}

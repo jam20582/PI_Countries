@@ -14,7 +14,7 @@ export const SORT_ORDER_POP_DES = "SORT_ORDER_POP_DES";
 export const CLEAR_DETAIL = "CLEAR_DETAIL";
 
 
-
+const URL_POST = "http://localhost:3001/activity"
 const URL = "http://localhost:3001/countries"
 const URL_ACT = "http://localhost:3001/activities"
 
@@ -48,12 +48,21 @@ export const getCountryDetail = (id) => async dispatch => {
 export const getCountryName = (name) => async dispatch => {
     try {
         const response = await axios(`${URL}?name=${name}`);
-        console.log(response)
+        //console.log(response)
         if(response.data) return dispatch({ type: GET_COUNTRY_NAME, payload: response.data });
         
             
     } catch (error) {
         return dispatch({ type: GET_COUNTRY_NAME, payload: {error:'no se encontro datos'} });
+    }
+}
+
+export const postActivity = (formInfo) => async dispatch=> {
+    try {
+        await axios.post(URL_POST, formInfo);
+        return dispatch({ type: POST_ACTIVITY });
+    } catch (error) {
+        return console.log(error);
     }
 }
 
@@ -88,7 +97,7 @@ export const regionFilter = (region) => {
 }
 
 export const activityFilter = (activity) => {
-    console.log(activity)
+    //console.log(activity)
     return {
         type: ACTIVITY_FILTER, payload: activity
     }

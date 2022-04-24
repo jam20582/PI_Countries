@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getCountryDetail } from "../actions/actions";
 import {Activity} from "../components/Activity";
+import style from '../Styles/CountryDetail.module.css';
 
 
 export const CountryDetail = () => {
@@ -12,32 +13,54 @@ export const CountryDetail = () => {
   let { id } = useParams();
   useEffect(() => {
     dispatch(getCountryDetail(id));
-  },[]);
+  },[dispatch , id]);
 
   return (
     <div>
-      <button className='back-button'>
-        <Link className="App-link" to="/home" >Back to countries</Link>
+      <button className={style.backButton}>
+        <Link className={style.link} to="/home" >Back to countries</Link>
       </button>
-      <div className="container-80">
-        <div className='container-double'>
+      <div className={style.container}>
+        <div className={style.containerDouble}>
             <div>
-              <img src={countryDetail.flag} alt="No img" />
+              <img style={{borderRadius: '50px'}} src={countryDetail.flag} alt="No img" />
             </div>
             <div>
               <h2>{countryDetail.name}</h2>
-              <h3>Country Code: {countryDetail.id}</h3>
-              <h4>Continent: {countryDetail.region}</h4>
-              <h5>Subregion: {countryDetail.subregion}</h5>
-              <h5>Capital: {countryDetail.capital}</h5>
-              <h5>Area: {countryDetail.area} Km2</h5>
-              <h5>Population: {countryDetail.population} Hab. </h5>
+              <table class={style.table}> 
+                <tbody>
+                  <tr>
+                    <td>Country Code:</td>
+                    <td>{countryDetail.id}</td>
+                  </tr>
+                  <tr>
+                    <td>Continent:</td>
+                    <td>{countryDetail.region}</td>
+                  </tr>
+                  <tr>
+                    <td>Subregion:</td>
+                    <td>{countryDetail.subregion}</td>
+                  </tr>
+                  <tr>
+                    <td>Capital:</td>
+                    <td>{countryDetail.capital}</td>
+                  </tr>
+                  <tr>
+                    <td>Area:</td>
+                    <td>{countryDetail.area} Km2</td>
+                  </tr>
+                  <tr>
+                    <td>Population:</td>
+                    <td>{countryDetail.population} Hab.</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
         </div>
-        <div >
+      </div>    
+        <div className={style.container} >
           <Activity countryName={countryDetail.name} activities={countryDetail.activities}/>
         </div>
-      </div>    
     </div>
   );
 };

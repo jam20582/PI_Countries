@@ -1,15 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
-//import style from "./activdetail.module.css"
+import React from 'react';
+import { Link } from 'react-router-dom';
+import style from '../Styles/Activity.module.css';
 
 
 export const Activity = ({ activities, countryName }) => {
+
   if (activities && activities.length > 0) {
-    console.log(activities);
+
     return (
-      <div className='grid'>
+      <div>
         <h3>Activities planed in {countryName}</h3>
-        <table className="greyGridTable">
+        <table className={style.table}>
           <thead>
             <tr>
               <th>Name</th>
@@ -33,7 +34,13 @@ export const Activity = ({ activities, countryName }) => {
       </div>
     );
   } else {
-    return <Link className='' to="/activity"><h3>Plan activities for this country!</h3></Link>
+    return (
+      <div className={style.container}>
+        <button className={style.backButton}>
+          <Link className={style.link} to="/activity"><h3>No activities... Lets create some!!</h3></Link>
+        </button>
+      </div>
+    )
   }
 };
 

@@ -1,0 +1,17 @@
+.container{
+    width: 95vw;
+    height: auto;
+    margin: 0 auto;
+    padding: 16px;
+}
+
+.containerGrid{
+    width: 100%;
+    min-width: auto;
+    height: 100%;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 64px;
+}

@@ -1,18 +1,22 @@
 import React from 'react';
+import style from '../Styles/Pagination.module.css';
 
 export const Pagination = ({ countriesPerPage, totalCountries, paginate }) => {
     const pageNumbers = [];
 
-    for (let i = 1; i <= Math.ceil(totalCountries / countriesPerPage); i++) {
+    const resto = totalCountries - 9;
+    pageNumbers.push(1);
+    
+    for (let i = 2; i <= Math.ceil(resto / 10); i++) {
         pageNumbers.push(i);
     }
 
     return (
         <nav>
-            <ul className='footer'>
+            <ul className={style.footer}>
             {pageNumbers.map(number => (
                 <li key={number} style={{listStyle: 'none'}}>
-                    <button className='pagination-button' onClick={() => paginate(number)}>{number}</button>
+                    <button className={style.paginationButton} onClick={() => paginate(number)}>{number}</button>
                 </li>
             ))}
             </ul>

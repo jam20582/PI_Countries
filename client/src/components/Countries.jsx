@@ -1,16 +1,17 @@
 import {getAllCountries} from '../actions/actions';
 import {useDispatch , useSelector} from 'react-redux';
 import {useEffect, useState} from 'react';
-import {Country} from '../components/Country'
-import {Pagination} from '../components/Pagination'
+import {Country} from '../components/Country';
+import {Pagination} from '../components/Pagination';
+import style from '../Styles/Countries.module.css';
 
 export function Countries(){
     const dispatch = useDispatch();
     
     const countries = useSelector((state) => state);
-
+    
     const [currentPage, setCurrentPage] = useState(1);
-
+    
     const [countriesPerPage, setCountriesPerPage] = useState(10);
 
     const pageValidator = (currentPage) => {
@@ -20,10 +21,10 @@ export function Countries(){
         }
         setCountriesPerPage(10);
     }
-    
+
     useEffect( () => {
     dispatch(getAllCountries());
-    },[]);
+    },[dispatch]);
 
     
     //const pagina = pageValidator(currentPage)
@@ -42,8 +43,8 @@ export function Countries(){
     },[currentPage])
 
     return (
-        <div className="container-80">
-            <div className="container-grid">
+        <div className={style.container}>
+            <div className={style.containerGrid}>
                 
                 {!countries.searchCountry ?  !countries.allCountries ? <h1>Cargando...</h1>
                 
@@ -65,13 +66,13 @@ export function Countries(){
                         region={country.region}
                     />)) }    
             </div>
-            <footer className="modal-footer">
+            <div>
                 <Pagination
                     countriesPerPage={countriesPerPage}
                     totalCountries={countries.searchCountry ? countries.searchCountry.length : countries.allCountries.length}
                     paginate={paginate}
                 />
-            </footer>
+            </div>
         </div>
     )
 }

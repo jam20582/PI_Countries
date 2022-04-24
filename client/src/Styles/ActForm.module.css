@@ -1,0 +1,111 @@
+.container{
+    width: 95vw;
+    height: auto;
+    margin: 0 auto;
+    padding: 16px;
+}
+
+.containerDouble{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    align-items: center;
+    width: 100%;
+    height: auto;
+    grid-gap: 48px;
+    padding: 16px 0;
+    justify-content: center;
+}
+
+.lightButton{
+    border: 1px solid white;
+    box-shadow: 0px 0px 3px grey;
+    border-radius: 4px;
+    font-size: 25px;
+    font-weight: 600;
+    color: darkblue;
+    margin: 0px 8px; 
+    padding: 4px 16px;
+    width: auto;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.lightButton:hover{
+    box-shadow: 0px 2px 4px grey;
+}
+
+.selectBox{
+    position: relative;
+    padding: 16px 32px;
+    border-radius: 4px;
+    height: 48px;
+    padding: 8px 16px;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    box-shadow: 0px 0px 4px grey;
+    color: darkblue;
+}
+
+.selectBox:hover{
+    box-shadow: 0px 2px 5px grey;
+}
+
+.searchInput{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    height: 48px;
+    background: white;
+    padding: 8px 16px;
+    padding: 0 1em 0 0;
+    box-shadow: 0px 0px 6px grey;
+    border-radius: 5px;
+    color: darkblue;
+    font-family: 'Nunito Sans', sans-serif;
+    transition: 0.4s;
+}
+.searchInput:hover{
+    box-shadow: 0px 2px 5px grey;
+}
+
+.backButton{
+    border: 1px solid white;
+    box-shadow: 0px 0px 3px grey;
+    border-radius: 4px;
+    font-size: 20px;
+    font-weight: 600;
+    color: darkblue;
+    margin: 8px 8px 8px 40px;
+    padding: 4px 16px;
+    width: auto;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.backButton:hover{
+    box-shadow: 0px 2px 4px grey;
+}
+
+.link{
+    text-decoration: none;
+    color: darkblue;
+}
+
+.table {
+    border: 2px solid #FFFFFF;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+.table td, .table th {
+    border: 1px solid #FFFFFF;
+    padding: 4px 4px;
+}
+.table tbody td {
+    font-size: 13px;
+}
+
+.table thead {
+    background: #FFFFFF;
+    border-bottom: 3px solid #333333;
+}

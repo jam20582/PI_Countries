@@ -1,0 +1,67 @@
+.navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    padding: 16px 32px;
+    box-shadow: 0px 4px 8px #ccc;
+    background: white;
+    color: darkblue;
+    margin-bottom: 16px;
+    z-index:10;
+}
+
+.lightbutton{
+    border: 1px solid white;
+    box-shadow: 0px 0px 3px #aaa;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    color: darkblue;
+    background: rgba(241, 241, 241, 0.856);
+    margin: 0px 8px; 
+    padding: 4px 16px;
+    width: auto;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.lightbutton:hover{
+    box-shadow: 0px 2px 4px #bbb;
+}
+
+.selectbox{
+    position: relative;
+    padding: 16px 32px;
+    border-radius: 4px;
+    height: 48px;
+    padding: 8px 16px;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    box-shadow: 0px 0px 4px #ccc;
+    color: darkblue;
+}
+
+.selectbox:hover{
+    box-shadow: 0px 2px 5px rgb(89, 89, 89);
+}
+
+.searchInput{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    height: 48px;
+    background: white;
+    padding: 8px 16px;
+    padding: 0 1em 0 0;
+    box-shadow: 0px 0px 6px #ccc;
+    border-radius: 5px;
+    color: darkblue;
+    font-family: 'Nunito Sans', sans-serif;
+    transition: 0.4s;
+}
+.searchInput:hover{
+    box-shadow: 0px 2px 5px rgb(89, 89, 89);
+}

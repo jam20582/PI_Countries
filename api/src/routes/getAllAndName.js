@@ -1,23 +1,8 @@
 const { Router } = require('express');
-const  {infoApi} = require('../dbLoad/infoApi');
 const {Country, Activity} = require('../db.js');
-const { Op } = require("sequelize");
-
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
-const getById = require('./getById');
-const activityCreate = require('./activityCreate');
-const getActivities = require('./getActivities');
-
-
+const  {infoApi} = require('../dbLoad/infoApi');
+//const {fillDB} = require('../dbLoad/fillDB.js')
 const router = Router();
-
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
-
-router.use('/countries/', getById)
-router.use('/activity', activityCreate)
-router.use('/activities', getActivities)
 
 const fillDB = async ()=>{
     try{
@@ -35,11 +20,13 @@ const fillDB = async ()=>{
     }
 }
 //GET /countries y GET /countries?name="..."
-router.get('/countries', async (req, res)=> {
+router.get('/', async (req, res)=> {
     //si llegase a venir por query tomamos el name
     const {name} = req.query;
+    console.log('entre a la ruta')
+    console.log(name)
 
-    let options = {}
+    let options = {} 
 
     try {
         await fillDB()
