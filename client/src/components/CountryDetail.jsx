@@ -8,6 +8,7 @@ import style from '../Styles/CountryDetail.module.css';
 
 export const CountryDetail = () => {
   const countryDetail = useSelector((state) => state.countryDetail);
+  console.log(countryDetail.activities);
   const dispatch = useDispatch();
 
   let { id } = useParams();
@@ -17,14 +18,22 @@ export const CountryDetail = () => {
 
   return (
     <div>
-      <button className={style.backButton}>
-        <Link className={style.link} to="/home" >Back to countries</Link>
-      </button>
-      {!<Activity /> ? null : 
-      <button className={style.backButton}>
+      <div className={style.container}>
+        <div className={style.containerDouble}>
+          <button className={style.backButton}>
+            <Link className={style.link} to="/home" >Back to countries</Link>
+          </button>
+            {countryDetail.activities?.length > 0 ? 
+          <button className={style.backButton}>
           <Link className={style.link} to="/activity">
-            <h3>Create activity</h3></Link>
-      </button>}
+            <h3>Create another activity</h3></Link>
+          </button> : 
+          <button className={style.backButton}>
+              <Link className={style.link} to="/activity">
+                <h3>No activities for this country... Lets create one</h3></Link>
+          </button>}
+        </div>
+      </div>  
       <div className={style.container}>
         <div className={style.containerDouble}>
             <div>

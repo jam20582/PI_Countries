@@ -5,8 +5,6 @@ import style from '../Styles/Activity.module.css';
 
 export const Activity = ({ activities, countryName }) => {
 
-  if (activities && activities.length > 0) {
-
     return (
       <div>
         <h3>Activities planed in {countryName}</h3>
@@ -33,14 +31,4 @@ export const Activity = ({ activities, countryName }) => {
         </table>
       </div>
     )
-  } else {
-    return (
-      <div className={style.container}>
-        {activities?.length !== 0 ? null : 
-        <button className={style.backButton}>
-          <Link className={style.link} to="/activity"><h3>No activities... Lets create some!!</h3></Link>
-        </button>}
-      </div>
-    )
-  }
 }
