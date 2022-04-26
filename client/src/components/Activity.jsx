@@ -32,16 +32,15 @@ export const Activity = ({ activities, countryName }) => {
           </tbody>
         </table>
       </div>
-    );
+    )
   } else {
     return (
       <div className={style.container}>
+        {activities?.length !== 0 ? null : 
         <button className={style.backButton}>
           <Link className={style.link} to="/activity"><h3>No activities... Lets create some!!</h3></Link>
-        </button>
+        </button>}
       </div>
     )
   }
-};
-
-
+}

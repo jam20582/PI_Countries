@@ -4,10 +4,10 @@ import style from '../Styles/Pagination.module.css';
 export const Pagination = ({ countriesPerPage, totalCountries, paginate }) => {
     const pageNumbers = [];
 
-    const resto = totalCountries - 9;
+    const secPageToFinish = totalCountries - 9;
     pageNumbers.push(1);
     
-    for (let i = 2; i <= Math.ceil(resto / 10); i++) {
+    for (let i = 2; i <= Math.ceil(secPageToFinish / 10); i++) {
         pageNumbers.push(i);
     }
 

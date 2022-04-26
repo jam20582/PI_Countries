@@ -20,6 +20,11 @@ export const CountryDetail = () => {
       <button className={style.backButton}>
         <Link className={style.link} to="/home" >Back to countries</Link>
       </button>
+      {!<Activity /> ? null : 
+      <button className={style.backButton}>
+          <Link className={style.link} to="/activity">
+            <h3>Create activity</h3></Link>
+      </button>}
       <div className={style.container}>
         <div className={style.containerDouble}>
             <div>
@@ -30,8 +35,8 @@ export const CountryDetail = () => {
               <table class={style.table}> 
                 <tbody>
                   <tr>
-                    <td>Country Code:</td>
-                    <td>{countryDetail.id}</td>
+                    <td className={style.columntitle}>Country Code:</td>
+                    <td className={style.columninfo}>{countryDetail.id}</td>
                   </tr>
                   <tr>
                     <td>Continent:</td>

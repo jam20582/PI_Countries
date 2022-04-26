@@ -25,5 +25,12 @@ export const utils = {
             }
         }
         return errors;
+    },
+
+    isObjEmpty: (obj) =>{
+        for (var prop in obj) {
+            if (obj.hasOwnProperty(prop)) return true;
+        }    
+        return false;
     }
 }

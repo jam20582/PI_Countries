@@ -15,7 +15,7 @@ export function ActForm(props) {
         arrDuration.push(i);
     }
 
-    const inputInicial = {
+    const initialInput = {
     name:'',
     duration:'',
     difficulty:'',
@@ -28,7 +28,7 @@ export function ActForm(props) {
 
     const dispatch = useDispatch();
 
-    const [input, setInput] = useState(inputInicial);
+    const [input, setInput] = useState(initialInput);
     const [errors, setErrors] = useState({});
 
     const handleOnChange = (e) => {
@@ -66,22 +66,15 @@ export function ActForm(props) {
         })
     }
 
-    const isObjEmpty = () =>{
-        for (var prop in errors) {
-            if (errors.hasOwnProperty(prop)) return true;
-        }    
-        return false;
-    }
-
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        if(isObjEmpty(errors)){
-            setInput(inputInicial)
+        if(utils.isObjEmpty(errors)){
+            setInput(initialInput)
             setErrors({})
             alert('Create fail: incorrect data types')
         } else {
             dispatch(postActivity(input));
-            setInput(inputInicial)
+            setInput(initialInput)
             setErrors({})
             alert('Activity Created Succesfully')
         }
@@ -98,11 +91,12 @@ export function ActForm(props) {
             </button>
         <form onSubmit={handleOnSubmit}>
             <div>
+                {errors.name && <h3>{errors.name}</h3>}
             <input className={style.searchInput} name="name" placeholder="Activity name to create" value={input.name} onChange={handleOnChange}></input>
             </div>
                 <div className={style.containerDouble}>
                     <div>
-                        <select name='difficulty' className={style.selectBox} onChange={handleOnChange} >
+                        <select name='difficulty' className={style.selectBox} onChange={handleOnChange} required >
                             <option value={input.difficulty}>Difficulty Select</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -112,7 +106,7 @@ export function ActForm(props) {
                         </select>
                     </div>
                     <div>
-                        <select name='duration' className={style.selectBox} onChange={handleOnChange} >
+                        <select name='duration' className={style.selectBox} onChange={handleOnChange} required>
                             <option value={input.duration}>Duration Select</option>
                             {arrDuration.map(duration => (
                                     <option key={duration} value={duration}>{`${duration}:00 Hours`}</option>
@@ -120,7 +114,7 @@ export function ActForm(props) {
                         </select>
                     </div>
                     <div>
-                        <select name='season' className={style.selectBox} onChange={handleOnChange} >
+                        <select name='season' className={style.selectBox} onChange={handleOnChange} required>
                             <option value={input.season}>Season Select</option>
                             <option value="Summer">Summer</option>
                             <option value="Autumn">Autumn</option>
@@ -130,7 +124,8 @@ export function ActForm(props) {
                     </div>
                     <div className={style.containerDouble}>
                         <div>
-                            <select name='countryID' className={style.selectBox} onChange={handleOnChange} >
+                            <h3>Select the countries to add the activity to</h3>
+                            <select name='countryID' className={style.selectBox} onChange={handleOnChange} required>
                                 <option value={input.countryID}>Countries Select</option>
                                 {allCountries?.map(country => (
                                         <option key={country.id} value={country.id}>{country.name}</option>
@@ -160,7 +155,7 @@ export function ActForm(props) {
                     </div>
                 </div>
             <div style={{display: 'flex', justifyContent: 'center', marginTop:'50px'}}>   
-            <button className={style.lightButton} type="submit" disabled={isObjEmpty()}>Add</button>
+            <button className={style.lightButton} type="submit" disabled={utils.isObjEmpty(errors)}>Add</button>
             </div>
         </form>
         </div>
