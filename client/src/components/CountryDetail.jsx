@@ -1,37 +1,39 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { getCountryDetail } from "../actions/actions";
+import { getCountryDetail, clearDetail } from "../actions/actions";
 import {Activity} from "../components/Activity";
 import style from '../Styles/CountryDetail.module.css';
 
 
 export const CountryDetail = () => {
   const countryDetail = useSelector((state) => state.countryDetail);
-  console.log(countryDetail.activities);
+  
   const dispatch = useDispatch();
 
   let { id } = useParams();
   useEffect(() => {
     dispatch(getCountryDetail(id));
+    return () => {
+      dispatch(clearDetail());
+    };
   },[dispatch , id]);
-
+  
   return (
     <div>
       <div className={style.container}>
         <div className={style.containerDouble}>
-          <button className={style.backButton}>
-            <Link className={style.link} to="/home" >Back to countries</Link>
-          </button>
+        <Link className={style.link} to="/home" >
+          <button className={style.backButton}>Back to countries</button>
+        </Link>
+          
             {countryDetail.activities?.length > 0 ? 
-          <button className={style.backButton}>
-          <Link className={style.link} to="/activity">
-            <h3>Create another activity</h3></Link>
-          </button> : 
-          <button className={style.backButton}>
-              <Link className={style.link} to="/activity">
-                <h3>No activities for this country... Lets create one</h3></Link>
-          </button>}
+          <Link className={style.link} to="/Activity" >
+            <button className={style.backButton}>Create another activity</button>
+          </Link> : 
+          <Link className={style.link} to="/Activity" >
+          <button className={style.backButton}>No activities for this country... Lets create one</button>
+        </Link>}
         </div>
       </div>  
       <div className={style.container}>
@@ -41,7 +43,7 @@ export const CountryDetail = () => {
             </div>
             <div>
               <h2>{countryDetail.name}</h2>
-              <table class={style.table}> 
+              <table className={style.table}> 
                 <tbody>
                   <tr>
                     <td className={style.columntitle}>Country Code:</td>
@@ -61,11 +63,11 @@ export const CountryDetail = () => {
                   </tr>
                   <tr>
                     <td>Area:</td>
-                    <td>{countryDetail.area} Km2</td>
+                    <td>{countryDetail.area?.toLocaleString('en-US')} Km2</td>
                   </tr>
                   <tr>
                     <td>Population:</td>
-                    <td>{countryDetail.population} Hab.</td>
+                    <td>{countryDetail.population?.toLocaleString('en-US')} Hab.</td>
                   </tr>
                 </tbody>
               </table>

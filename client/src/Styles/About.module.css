@@ -1,0 +1,51 @@
+.imgwhatts{
+    width: 150px;
+    height: auto;
+}
+
+.imggithub{
+    width: 110px;
+    height: auto;
+    margin-left: 25px;
+}
+
+.imglinkedin{
+    width: 120px;
+    height: auto;
+    margin-left: 40px;
+}
+
+.backButton{
+    border: 1px solid white;
+    box-shadow: 0px 0px 3px grey;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    color: darkblue;
+    margin: 8px 8px 8px 40px;
+    padding: 4px 16px;
+    width: auto;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.backButton:hover{
+    box-shadow: 0px 2px 4px grey;
+}
+
+.container{
+    width: 95vw;
+    height: auto;
+    margin: 0 auto;
+    padding: 16px;
+    display: flex;
+}
+
+.containerDouble{
+    display: flex;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    align-items: center;
+    padding: 16px 0;
+    justify-content: center;
+}
+
+

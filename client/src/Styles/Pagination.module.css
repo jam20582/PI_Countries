@@ -1,10 +1,9 @@
 .footer{
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+    gap: 10px;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    height: auto;
     padding: 16px 32px;
     box-shadow: 0px 4px 8px #ccc;
     background: white;
@@ -14,6 +13,7 @@
 }
 
 .paginationButton{
+    
     border: 1px solid white;
     box-shadow: 0px 0px 3px #aaa;
     border-radius: 4px;

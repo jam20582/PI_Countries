@@ -1,6 +1,7 @@
 
 export const utils = {
     validate: (input, item) => {
+        console.log(input)
         let errors = {};
 
         if(item === 'name') {
@@ -10,11 +11,11 @@ export const utils = {
         }
 
         if (item === 'duration') {
-            if (input.duration < 1 || input.duration > 24) errors.duration = 'Duration must be between 1 and 24 hours'
+            if (input.duration < 1 || input.duration > 24 || input.duration === '') errors.duration = 'Duration must be between 1 and 24 hours'
         }
 
         if (item === 'difficulty') {
-            if (input.difficulty < 1 || input.difficulty > 5) errors.difficulty = 'Duration must be between 1 and 24 hours'        
+            if (input.difficulty < 1 || input.difficulty > 5 || input.difficulty === '') errors.difficulty = 'Difficulty must be between 1 and 5'        
         }
 
         
@@ -23,6 +24,10 @@ export const utils = {
                 || input.season !== 'Winter' || input.season !== 'Spring') {
                 errors.season = 'Season invalid'        
             }
+        }
+
+        if(item === 'countryID'){
+            if(!input.countryID[0]) errors.countryID = 'At least one country need to be selected'
         }
         return errors;
     },

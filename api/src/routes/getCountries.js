@@ -1,32 +1,17 @@
 const { Router } = require('express');
 const {Country, Activity} = require('../db.js');
-const  {infoApi} = require('../dbLoad/infoApi');
-//const {fillDB} = require('../dbLoad/fillDB.js')
+const { fillDB } = require('../dbLoad/fillDB')
+const {Op} = require('sequelize')
+
+
 const router = Router();
 
-const fillDB = async ()=>{
-    try{
-        //comprobamos que la db este con datos  
-        let checkDb = await Country.findAll()
-            // si la db esta vacia vamos a llenarla con los datos de la api
-            if(!checkDb.length){
-            //nos traemos toda la info de la api
-            const countries = await infoApi()
-            //inyectamos los datos a la db
-            await Country.bulkCreate(countries)             
-            }
-    } catch (error){
-        console.log(error) 
-    }
-}
 //GET /countries y GET /countries?name="..."
 router.get('/', async (req, res)=> {
     //si llegase a venir por query tomamos el name
     const {name} = req.query;
-    console.log('entre a la ruta')
-    console.log(name)
 
-    let options = {} 
+    let options = {}
 
     try {
         await fillDB()
@@ -49,8 +34,33 @@ router.get('/', async (req, res)=> {
         res.json(nameSearch)
 
     } catch (error) {
-        res.json({error: 'no se encontro paises'})
+        console.log(error)
     }
 });  
+
+//GET /countries/{idPais}:
+router.get('/:id', async (req, res)=>{
+    //tomamos el id que viene por params
+    let {id} = req.params;
+    try {
+        //buscamos el pais con la id solicitada
+        const idSearch = await Country.findOne({
+            where:{
+                id: id.toUpperCase(),
+            },
+            include:{
+                model: Activity,
+                attributes: ["id","name","difficulty","duration","season"],
+                through: { attributes: [] },
+            }
+        })
+        //si no encontramos el pais mostramos un mensaje de error
+        if(!idSearch) res.status(404).send(`El código "${id}" no corresponde a un pais existente`)
+        //sino devolvemos el pais encontrado
+        res.json(idSearch)
+    } catch (error) {
+        console.log(error)
+    }
+});
 
 module.exports = router;

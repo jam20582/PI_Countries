@@ -8,9 +8,7 @@ export function LandingPage() {
   
   return (
     <div className={style.landing}>
-      <button className={style.landingbutton}>    
-          <Link to='/home'><img src={mapa} alt='Click para ingresar' /></Link>
-      </button>
+          <Link to='/home'><img src={mapa} alt='Click para ingresar' style={{marginTop: '50px'}}/></Link>
     </div>
   )
 }

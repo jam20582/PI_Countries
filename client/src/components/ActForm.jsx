@@ -16,7 +16,7 @@ export function ActForm(props) {
     }
 
     const initialInput = {
-    name:'',
+    name: '',
     duration:'',
     difficulty:'',
     season: '',
@@ -24,7 +24,7 @@ export function ActForm(props) {
     }
 
     const allCountries = useSelector((state) => state.allCountries);
-    //console.log(countries)
+    const message = useSelector((state) => state.message);
 
     const dispatch = useDispatch();
 
@@ -33,21 +33,27 @@ export function ActForm(props) {
 
     const handleOnChange = (e) => {
         let item = e.target.name
+
         if(item === 'name'){
             setErrors(utils.validate({...input, [item]: e.target.value}, item))
             setInput({...input, [item]: e.target.value}) 
         }
 
+        if(item === 'countryID') {
         let exist = input.countryID.find((c) => c === e.target.value);
         if(!exist){
-            if(e.target.name === 'countryID') {
-                setInput({...input, [e.target.name]: [...input.countryID, e.target.value]});
-            } else {
-                setInput({...input, [e.target.name]: e.target.value});
-            }    
+                setErrors(utils.validate({...input, [item]: e.target.value}, item))
+                setInput({...input, [item]: [...input.countryID, e.target.value]});
+            }   
         }
 
-        if(e.target.name === 'duration'){
+        if(item === 'difficulty'){
+            setErrors(utils.validate({...input, [item]: e.target.value}, item))
+            setInput({...input, [item]: e.target.value}) 
+        }
+
+        if(item === 'duration'){
+            setErrors(utils.validate({...input, [item]: e.target.value}, item))
             let stringToTime = e.target.value;
             if(parseInt(e.target.value) < 10) {
                 stringToTime = `0${stringToTime}:00`
@@ -56,7 +62,17 @@ export function ActForm(props) {
             }
             setInput({...input, [e.target.name]: stringToTime})
         }
+        if(item === 'difficulty'){
+            setErrors(utils.validate({...input, [item]: e.target.value}, item))
+            setInput({...input, [item]: e.target.value}) 
+        }
+
+        if(item === 'season'){
+            //setErrors(utils.validate({...input, [item]: e.target.value}, item))
+            setInput({...input, [item]: e.target.value}) 
+        }
     };
+
 
     const delCountry = (e) => {
         let country = input.countryID.filter((c) => c !== e.target.value);
@@ -68,17 +84,11 @@ export function ActForm(props) {
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        if(utils.isObjEmpty(errors)){
-            setInput(initialInput)
-            setErrors({})
-            alert('Create fail: incorrect data types')
-        } else {
             dispatch(postActivity(input));
             setInput(initialInput)
             setErrors({})
             alert('Activity Created Succesfully')
         }
-    }
 
     useEffect(() => {
         dispatch(getAllCountries())
@@ -92,12 +102,12 @@ export function ActForm(props) {
         <form onSubmit={handleOnSubmit}>
             <div>
                 {errors.name && <h3>{errors.name}</h3>}
-            <input className={style.searchInput} name="name" placeholder="Activity name to create" value={input.name} onChange={handleOnChange}></input>
+            <input className={style.searchInput} name="name" placeholder="Activity name to create" value={input.name} onChange={handleOnChange} required></input>
             </div>
                 <div className={style.containerDouble}>
                     <div>
                         <select name='difficulty' className={style.selectBox} onChange={handleOnChange} required >
-                            <option value={input.difficulty}>Difficulty Select</option>
+                            <option value=''>Difficulty Select</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -107,7 +117,7 @@ export function ActForm(props) {
                     </div>
                     <div>
                         <select name='duration' className={style.selectBox} onChange={handleOnChange} required>
-                            <option value={input.duration}>Duration Select</option>
+                            <option value=''>Duration Select</option>
                             {arrDuration.map(duration => (
                                     <option key={duration} value={duration}>{`${duration}:00 Hours`}</option>
                                 ))}
@@ -115,7 +125,7 @@ export function ActForm(props) {
                     </div>
                     <div>
                         <select name='season' className={style.selectBox} onChange={handleOnChange} required>
-                            <option value={input.season}>Season Select</option>
+                            <option value=''>Season Select</option>
                             <option value="Summer">Summer</option>
                             <option value="Autumn">Autumn</option>
                             <option value="Winter">Winter</option>
@@ -126,7 +136,7 @@ export function ActForm(props) {
                         <div>
                             <h3>Select the countries to add the activity to</h3>
                             <select name='countryID' className={style.selectBox} onChange={handleOnChange} required>
-                                <option value={input.countryID}>Countries Select</option>
+                                <option value=''>Countries Select</option>
                                 {allCountries?.map(country => (
                                         <option key={country.id} value={country.id}>{country.name}</option>
                                     ))}
@@ -154,8 +164,9 @@ export function ActForm(props) {
                         </div>
                     </div>
                 </div>
-            <div style={{display: 'flex', justifyContent: 'center', marginTop:'50px'}}>   
-            <button className={style.lightButton} type="submit" disabled={utils.isObjEmpty(errors)}>Add</button>
+            <div style={{display: 'flex', justifyContent: 'center', marginTop:'50px'}}>
+            {utils.isObjEmpty(errors) ? <h3>Button disabled until no errors in data</h3> : 
+            <button className={style.lightButton} type="submit">Add</button>}
             </div>
         </form>
         </div>

@@ -95,8 +95,6 @@ export function Header() {
                         <option value="Oceania">Oceania</option>
                         <option value="Antarctic">Antarctic</option>
                     </select>
-                </div>
-                <div>
                     <select  className={style.selectbox} onChange={filterAct} >
                         <option value=''>Filter by Activity</option>
                         {activities?.map(act => (
@@ -104,6 +102,8 @@ export function Header() {
                         ))}
                     </select>
                 </div>
+                {/* <div>
+                </div> */}
                 <div>
                     <button className={style.lightbutton} onClick={orderName}><h3>Order Alphabetically</h3><h3>{orderN.type}</h3></button>
                     <button className={style.lightbutton} onClick={orderPop}><h3>Sort by Population</h3><h3>{orderP.type}</h3></button>
