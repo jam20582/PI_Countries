@@ -1,11 +1,8 @@
 const axios = require('axios');
 
-//funcion para realizar la carga de la db
 const infoApi = async () => {
-    //usamos axios para traernos los datos
     const apiData = await axios('https://restcountries.com/v3/all');
 
-    //mapeamos el resultado obtenido y armamos el objeto que necesitamos
     const countries = await apiData.data.map(c => {
         return{
             name: c.name.common != null ? c.name.common : 'No se encontro nombre',

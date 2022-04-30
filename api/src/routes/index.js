@@ -1,5 +1,4 @@
 const { Router } = require('express');
-
 const {Country, Activity} = require('../db.js');
 const { Op } = require("sequelize");
 
@@ -9,7 +8,6 @@ const getCountries = require('./getCountries');
 const activityCreate = require('./activityCreate');
 const getActivities = require('./getActivities');
 
-
 const router = Router();
 
 // Configurar los routers
@@ -18,7 +16,5 @@ const router = Router();
 router.use('/countries', getCountries)
 router.use('/activity', activityCreate)
 router.use('/activities', getActivities)
-
-
 
 module.exports = router;

@@ -11,12 +11,11 @@ const router = Router();
 // Temporada ('Summer','Autumn', 'Winter','Spring')
 
 router.post('/', async (req,res)=>{
-    //destructuring con los datos que llegan por body
     const {name, difficulty, duration, season, countryID} = req.body;
-    //si no esta alguno de los datos mostramos un mensaje de error
+
     if(!name || !difficulty || !duration || !season || !countryID) res.status(404).send('Faltan datos obligatorios');
+
     try {
-        //validamos que exista la actividad realacionada con el pais
         const activityValidator = await Activity.findOne({
             where: {
                 name: name,

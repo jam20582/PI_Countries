@@ -73,7 +73,7 @@ export function Header() {
         <header className={style.navbar}>
                 <div>
                     <Link to="/">
-                        <button className={style.lightbutton} onClick={() => dispatch(clearDetail())}>
+                        <button className={style.lightButton} onClick={() => dispatch(clearDetail())}>
                             <h2>Henry Countries</h2>
                             <h3>App Reset</h3>
                         </button>
@@ -98,8 +98,8 @@ export function Header() {
                             <option key={act.id} value={act.name}>{act.name}</option>
                         ))}
                     </select>
-                    <button className={style.lightbutton} onClick={orderName}><h3>Order Alphabetically</h3><h3>{orderN.type}</h3></button>
-                    <button className={style.lightbutton} onClick={orderPop}><h3>Sort by Population</h3><h3>{orderP.type}</h3></button>
+                    <button className={style.orderButton} onClick={orderName}><h3>Order Alphabetically</h3><h3>{orderN.type}</h3></button>
+                    <button className={style.orderButton} onClick={orderPop}><h3>Sort by Population</h3><h3>{orderP.type}</h3></button>
                 </div>
         </header>
         )

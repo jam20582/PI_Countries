@@ -8,10 +8,9 @@
     background: white;
     color: darkblue;
     margin-bottom: 16px;
-    z-index:10;
 }
 
-.lightbutton{
+.lightButton{
     border: 1px solid white;
     box-shadow: 0px 0px 3px #aaa;
     border-radius: 4px;
@@ -25,7 +24,24 @@
     cursor: pointer;
     transition: 0.5s;
 }
-.lightbutton:hover{
+.lightButton:hover{
+    box-shadow: 0px 2px 4px #bbb;
+}
+
+.orderButton{
+    border: 1px solid white;
+    box-shadow: 0px 0px 3px #aaa;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    color: darkblue;
+    background: rgba(241, 241, 241, 0.856);
+    margin: 0px 8px; 
+    padding: 4px 16px;
+    width: auto;
+    transition: 0.5s;
+}
+.orderButton:hover{
     box-shadow: 0px 2px 4px #bbb;
 }
 

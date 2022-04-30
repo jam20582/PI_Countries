@@ -10,7 +10,7 @@ describe('Country model', () => {
     beforeEach(() => Country.sync({ force: true }));
     describe('name', () => {
       it('should throw an error if name is null', (done) => {
-        Country.create({})
+        Country.create({name:''})
           .then(() => done(new Error('It requires a valid name')))
           .catch(() => done());
       });
@@ -20,18 +20,3 @@ describe('Country model', () => {
     });
   });
 });
-
-
-// describe("name", () => {
-//   it("Arroja un error si name es numero", (done) => {
-//     Country.create({ name: '1423'})
-//       .then(() => done(new Error("name no puede ser un numero")))
-//       .catch(() => done());
-//   });  
-
-//   it("Arroja un error si name tiene longitud menor a 3 caracteres", (done) => {
-//     Country.create({ name: "Ab"})
-//       .then(() => done(new Error("Name debe tener una longitud minima de 3 caracteres")))
-//       .catch(() => done());
-//   });
-// });
