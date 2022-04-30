@@ -24,7 +24,6 @@ export function ActForm(props) {
     }
 
     const allCountries = useSelector((state) => state.allCountries);
-    const message = useSelector((state) => state.message);
 
     const dispatch = useDispatch();
 
