@@ -6,6 +6,7 @@ import {Pagination} from '../components/Pagination';
 import { Link } from 'react-router-dom';
 import { clearDetail } from '../actions/actions'
 import mundo from '../img/Mundo_hecho_de_Banderas.gif'
+import loading from '../img/loading.gif'
 import style from '../Styles/Countries.module.css';
 
 export function Countries(){
@@ -45,8 +46,13 @@ export function Countries(){
 
     const renderContext = {
         allCountries: 
-            !countries.allCountries ? <h1>Cargando...</h1>
-                : currentCountry?.map(country => (   
+            countries.allCountries.length === 0 
+            ?   <div>
+                    <div><h2>Loading countries...</h2></div>
+                    <div><img src={loading} alt='Loading countries...'/></div>    
+                </div>
+
+            :   currentCountry?.map(country => (   
                     <Country key={country.id}
                         id={country.id}
                         flag={country.flag}

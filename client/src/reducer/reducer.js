@@ -71,7 +71,6 @@ function reducer(state=initialState, {type, payload}){
 
         case CLEAR_DETAIL:{
             delete state.searchCountry
-            delete state.message
             return{
                 ...state,
                 countryDetail:{}

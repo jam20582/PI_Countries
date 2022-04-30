@@ -70,8 +70,7 @@ export function Header() {
         },[dispatch]);
 
     return (
-        <header>
-            <nav className={style.navbar}>
+        <header className={style.navbar}>
                 <div>
                     <Link to="/">
                         <button className={style.lightbutton} onClick={() => dispatch(clearDetail())}>
@@ -80,11 +79,9 @@ export function Header() {
                         </button>
                     </Link>
                 </div>
-                <div>
-                    <form onSubmit={onSubmit}>
-                        <input className={style.searchInput} type="text" placeholder="Search for countries" value={name} onChange={handleChange}></input>
-                    </form>
-                </div>
+                <form onSubmit={onSubmit}>
+                    <input className={style.searchInput} type="text" placeholder="Search for countries" value={name} onChange={handleChange}></input>
+                </form>
                 <div>
                     <select  className={style.selectbox} onChange={filter} >
                         <option value=''>Filter by Continent</option>
@@ -101,14 +98,9 @@ export function Header() {
                             <option key={act.id} value={act.name}>{act.name}</option>
                         ))}
                     </select>
-                </div>
-                {/* <div>
-                </div> */}
-                <div>
                     <button className={style.lightbutton} onClick={orderName}><h3>Order Alphabetically</h3><h3>{orderN.type}</h3></button>
                     <button className={style.lightbutton} onClick={orderPop}><h3>Sort by Population</h3><h3>{orderP.type}</h3></button>
                 </div>
-            </nav>
         </header>
         )
 }

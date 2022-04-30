@@ -20,3 +20,18 @@ describe('Country model', () => {
     });
   });
 });
+
+
+// describe("name", () => {
+//   it("Arroja un error si name es numero", (done) => {
+//     Country.create({ name: '1423'})
+//       .then(() => done(new Error("name no puede ser un numero")))
+//       .catch(() => done());
+//   });  
+
+//   it("Arroja un error si name tiene longitud menor a 3 caracteres", (done) => {
+//     Country.create({ name: "Ab"})
+//       .then(() => done(new Error("Name debe tener una longitud minima de 3 caracteres")))
+//       .catch(() => done());
+//   });
+// });

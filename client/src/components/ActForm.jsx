@@ -32,28 +32,23 @@ export function ActForm(props) {
     const [errors, setErrors] = useState({});
 
     const handleOnChange = (e) => {
-        let item = e.target.name
-
-        if(item === 'name'){
-            setErrors(utils.validate({...input, [item]: e.target.value}, item))
-            setInput({...input, [item]: e.target.value}) 
+        if(e.target.name === 'name'){
+            setErrors(utils.validate({...input,[e.target.name]: e.target.value}))
+            setInput({...input, [e.target.name]: e.target.value}) 
         }
-
-        if(item === 'countryID') {
+        if(e.target.name === 'countryID') {
         let exist = input.countryID.find((c) => c === e.target.value);
         if(!exist){
-                setErrors(utils.validate({...input, [item]: e.target.value}, item))
-                setInput({...input, [item]: [...input.countryID, e.target.value]});
+                setErrors(utils.validate({...input, [e.target.name]: e.target.value}))
+                setInput({...input, [e.target.name]: [...input.countryID, e.target.value]});
             }   
         }
-
-        if(item === 'difficulty'){
-            setErrors(utils.validate({...input, [item]: e.target.value}, item))
-            setInput({...input, [item]: e.target.value}) 
+        if(e.target.name === 'difficulty'){
+            setErrors(utils.validate({...input, [e.target.name]: e.target.value}))
+            setInput({...input, [e.target.name]: e.target.value}) 
         }
-
-        if(item === 'duration'){
-            setErrors(utils.validate({...input, [item]: e.target.value}, item))
+        if(e.target.name === 'duration'){
+            setErrors(utils.validate({...input, [e.target.name]: e.target.value}))
             let stringToTime = e.target.value;
             if(parseInt(e.target.value) < 10) {
                 stringToTime = `0${stringToTime}:00`
@@ -62,17 +57,15 @@ export function ActForm(props) {
             }
             setInput({...input, [e.target.name]: stringToTime})
         }
-        if(item === 'difficulty'){
-            setErrors(utils.validate({...input, [item]: e.target.value}, item))
-            setInput({...input, [item]: e.target.value}) 
+        if(e.target.name === 'difficulty'){
+            setErrors(utils.validate({...input, [e.target.name]: e.target.value}))
+            setInput({...input, [e.target.name]: e.target.value}) 
         }
-
-        if(item === 'season'){
-            //setErrors(utils.validate({...input, [item]: e.target.value}, item))
-            setInput({...input, [item]: e.target.value}) 
+        if(e.target.name === 'season'){
+            setErrors(utils.validate({...input, [e.target.name]: e.target.value}))
+            setInput({...input, [e.target.name]: e.target.value}) 
         }
     };
-
 
     const delCountry = (e) => {
         let country = input.countryID.filter((c) => c !== e.target.value);
@@ -92,7 +85,7 @@ export function ActForm(props) {
 
     useEffect(() => {
         dispatch(getAllCountries())
-    },[dispatch]);
+    },[dispatch, errors]);
 
     return (
         <div className={style.container}>

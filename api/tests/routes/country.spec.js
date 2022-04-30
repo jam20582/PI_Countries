@@ -36,3 +36,16 @@ describe('POST /activity', () => {
     expect(res.text).to.equals('Faltan datos obligatorios');
   });
 });
+
+describe("Rutas activities", () => {
+  describe("GET /activities", () => {
+    it("se espera una respuesta 200", () => agent.get("/activities").expect(200));
+  });
+});
+
+describe("Obtiene un pais por id", () => {
+  describe("GET /countries/:id", () => {
+    it("Se espera una respuesta 200 se si pasa un id", () =>
+      agent.get("/countries/ARG").expect(200));
+  });
+});
