@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {postActivity} from '../actions/actions';
-import { useSelector, useDispatch} from 'react-redux';
-import {getAllCountries} from '../actions/actions';
+import {useSelector, useDispatch} from 'react-redux';
+import {getAllCountries, clearDetail} from '../actions/actions';
 import {Link} from 'react-router-dom';
 import {utils} from '../Utils/Utils';
 import style from '../Styles/ActForm.module.css';
-
 
 export function ActForm(props) {
 
@@ -24,6 +23,7 @@ export function ActForm(props) {
     }
 
     const allCountries = useSelector((state) => state.allCountries);
+    const message = useSelector((state)=>state.message)
 
     const dispatch = useDispatch();
 
@@ -76,35 +76,39 @@ export function ActForm(props) {
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
-            dispatch(postActivity(input));
-            setInput(initialInput)
-            setErrors({})
-            alert('Activity Created Succesfully')
-        }
+        dispatch(postActivity(input));
+        dispatch(clearDetail());
+        setInput(initialInput);
+        setErrors({});
+    }
+
+    useEffect( () => {
+        if(message !== null) alert(message);
+    }, [message])
 
     useEffect(() => {
         dispatch(getAllCountries())
-    },[dispatch, errors]);
+    },[dispatch]);
 
     return (
         <div className={style.container}>
-            <button className={style.backButton} style={{marginBottom: '30px'}}>
-                <Link className={style.link} to="/home" >Back to countries</Link>
+            <button className={style.backButton} style={{marginBottom: '30px'}} onClick={()=>dispatch(clearDetail())}>
+                <Link className={style.link} to='/home' >Back to countries</Link>
             </button>
         <form onSubmit={handleOnSubmit}>
             <div>
                 {errors.name && <h3>{errors.name}</h3>}
-            <input className={style.searchInput} name="name" placeholder="Activity name to create" value={input.name} onChange={handleOnChange} required></input>
+            <input className={style.searchInput} name='name' placeholder='Activity name to create' value={input.name} onChange={handleOnChange} required></input>
             </div>
                 <div className={style.containerDouble}>
                     <div>
                         <select name='difficulty' className={style.selectBox} onChange={handleOnChange} required >
                             <option value=''>Difficulty Select</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                            <option value='4'>4</option>
+                            <option value='5'>5</option>
                         </select>
                     </div>
                     <div>
@@ -118,10 +122,10 @@ export function ActForm(props) {
                     <div>
                         <select name='season' className={style.selectBox} onChange={handleOnChange} required>
                             <option value=''>Season Select</option>
-                            <option value="Summer">Summer</option>
-                            <option value="Autumn">Autumn</option>
-                            <option value="Winter">Winter</option>
-                            <option value="Spring">Spring</option>
+                            <option value='Summer'>Summer</option>
+                            <option value='Autumn'>Autumn</option>
+                            <option value='Winter'>Winter</option>
+                            <option value='Spring'>Spring</option>
                         </select>
                     </div>
                     <div className={style.containerDouble}>
@@ -158,7 +162,7 @@ export function ActForm(props) {
                 </div>
             <div style={{display: 'flex', justifyContent: 'center', marginTop:'50px'}}>
             {utils.isObjEmpty(errors) ? <h3>Button disabled until no errors in data</h3> : 
-            <button className={style.lightButton} type="submit">Add</button>}
+            <button className={style.lightButton} type='submit'>Add activity</button>}
             </div>
         </form>
         </div>

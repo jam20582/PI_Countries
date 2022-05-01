@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const {Country, Activity} = require('../db.js');
-const { Op } = require("sequelize");
+const { Op } = require('sequelize');
 
 const router = Router();
 
@@ -26,7 +26,6 @@ router.post('/', async (req,res)=>{
             }]     
         }); 
         
-        //si no existe la actividad la creamos (findOne devuelve null si no encuentra)
         if (activityValidator === null) {
             const [createAct, created] = await Activity.findOrCreate({
                 where:{
@@ -35,28 +34,19 @@ router.post('/', async (req,res)=>{
                     duration: duration,
                     season: season,
                 },
-                // defaults: {
-                //     name: name,
-                //     difficulty: difficulty,
-                //     duration: duration,
-                //     season: season,  
-                // }
             });
-            //buscamos el o los paises a los cuales agregar la actividad
-            const findCountries = await Country.findAll({
+            const countriesToAddActivity = await Country.findAll({
                 where: {
                     id: {
                         [Op.or]: countryID,
                     }
                 },
             });
-            //agregamos la actividad al pais o paises
-            const createdActivity = await createAct.addCountries(findCountries);
-            return res.send(createdActivity);
+            await createAct.addCountries(countriesToAddActivity);
+            return res.send('Actividad creada');
         } else {
             return res.send('Ya existe la actividad');  
         }
-        
     } catch (error) {
         console.log(error)
     }

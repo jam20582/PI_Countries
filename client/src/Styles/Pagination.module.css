@@ -17,7 +17,7 @@
     border: 1px solid white;
     box-shadow: 0px 0px 3px #aaa;
     border-radius: 4px;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 600;
     color: darkblue;
     background: rgba(241, 241, 241, 0.856);
@@ -28,5 +28,7 @@
     transition: 0.5s;
 }
 .paginationButton:hover{
-    box-shadow: 0px 2px 4px #bbb;
+    box-shadow: 2px 4px 6px #bbb;
+    transform:scale(1.5);
+    background: darkgrey;
 }

@@ -12,16 +12,16 @@ import {useLocation} from 'react-router-dom';
 function App() {
   const {pathname} = useLocation();
   return (
-    <div className="App">
+    <div className='App'>
       
       {pathname === '/home'  ? <Header /> : null }
       
       <Routes>
-        <Route path="/" element={<LandingPage />}  />
-        <Route path="/home" element={<Countries />} />
-        <Route path="/countries/:id" element={<CountryDetail />} />
-        <Route path="/activity" element={<ActForm />} />
-        <Route path="/about" element={<About />} />
+        <Route path='/' element={<LandingPage />}  />
+        <Route path='/home' element={<Countries />} />
+        <Route path='/countries/:id' element={<CountryDetail />} />
+        <Route path='/activity' element={<ActForm />} />
+        <Route path='/about' element={<About />} />
       </Routes>
     </div>
   );

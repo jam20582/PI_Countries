@@ -1,8 +1,8 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import { getCountryDetail, clearDetail } from "../actions/actions";
-import {Activity} from "../components/Activity";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
+import { getCountryDetail, clearDetail } from '../actions/actions';
+import {Activity} from '../components/Activity';
 import style from '../Styles/CountryDetail.module.css';
 
 
@@ -23,15 +23,15 @@ export const CountryDetail = () => {
     <div>
       <div className={style.container}>
         <div className={style.containerDouble}>
-        <Link className={style.link} to="/home" >
+        <Link className={style.link} to='/home' >
           <button className={style.backButton}>Back to countries</button>
         </Link>
           
             {countryDetail.activities?.length > 0 ? 
-          <Link className={style.link} to="/Activity" >
+          <Link className={style.link} to='/Activity' >
             <button className={style.backButton}>Create another activity</button>
           </Link> : 
-          <Link className={style.link} to="/Activity" >
+          <Link className={style.link} to='/Activity' >
           <button className={style.backButton}>No activities for this country... Lets create one</button>
         </Link>}
         </div>
@@ -39,7 +39,7 @@ export const CountryDetail = () => {
       <div className={style.container}>
         <div className={style.containerDouble}>
             <div>
-              <img style={{borderRadius: '50px'}} src={countryDetail.flag} alt="No img" />
+              <img style={{borderRadius: '50px'}} src={countryDetail.flag} alt='No img' />
             </div>
             <div>
               <h2>{countryDetail.name}</h2>

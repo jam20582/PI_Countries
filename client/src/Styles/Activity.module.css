@@ -1,20 +1,16 @@
 .table {
-    border: 2px solid #FFFFFF;
+    border: 2px solid #000000;
     width: 100%;
     text-align: center;
     border-collapse: collapse;
 }
 .table td, .table th {
-    border: 1px solid #FFFFFF;
+    border: 1px solid #000000;
     padding: 4px 4px;
+    background-color: rgb(250, 244, 244);
 }
 .table tbody td {
     font-size: 13px;
-}
-
-.table thead {
-    background: #FFFFFF;
-    border-bottom: 3px solid #333333;
 }
 
 .backButton{

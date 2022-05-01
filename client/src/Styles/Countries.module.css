@@ -7,7 +7,7 @@
 
 .containerGrid{
     display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(277px, 277px));
     gap: 10px;
 }
 
@@ -26,7 +26,7 @@
     border: 1px solid white;
     box-shadow: 0px 0px 3px #aaa;
     border-radius: 4px;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 600;
     color: darkblue;
     background: rgba(241, 241, 241, 0.856);
@@ -37,22 +37,5 @@
     transition: 0.5s;
 }
 .lightButton:hover{
-    box-shadow: 0px 2px 4px #bbb;
-}
-
-.backButton{
-    border: 1px solid white;
-    box-shadow: 0px 0px 3px grey;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 600;
-    color: darkblue;
-    margin: 8px 8px 8px 40px;
-    padding: 4px 16px;
-    width: auto;
-    cursor: pointer;
-    transition: 0.5s;
-}
-.backButton:hover{
-    box-shadow: 0px 2px 4px grey;
+    box-shadow: 0px 2px 4px rgb(63, 63, 63);
 }

@@ -6,7 +6,7 @@ const {Op} = require('sequelize')
 
 const router = Router();
 
-//GET /countries y GET /countries?name="..."
+//GET /countries y GET /countries?name='...'
 router.get('/', async (req, res)=> {
 
     const {name} = req.query;
@@ -26,13 +26,11 @@ router.get('/', async (req, res)=> {
         }
         const nameSearch = await Country.findAll({...options, include: {
             model: Activity,
-            attributes: ["id","name","difficulty","duration","season"],
+            attributes: ['id','name','difficulty','duration','season'],
             through: { attributes: [] },
     }})
-        if(!nameSearch.length) return res.status(404).send(`El nombre "${name}" no arrojo ningun resultado`)
-        
-        res.json(nameSearch)
-
+        if(!nameSearch.length) return res.status(404).send(`El nombre '${name}' no arrojo ningun resultado`)
+            res.json(nameSearch)
     } catch (error) {
         console.log(error)
     }
@@ -50,14 +48,13 @@ router.get('/:id', async (req, res)=>{
             },
             include:{
                 model: Activity,
-                attributes: ["id","name","difficulty","duration","season"],
+                attributes: ['id','name','difficulty','duration','season'],
                 through: { attributes: [] },
             }
         })
         
-        if(!idSearch) res.status(404).send(`El código "${id}" no corresponde a un pais existente`)
-        
-        res.json(idSearch)
+        if(!idSearch) res.status(404).send(`El código '${id}' no corresponde a un pais existente`)
+            res.json(idSearch)
     } catch (error) {
         console.log(error)
     }

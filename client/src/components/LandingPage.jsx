@@ -8,7 +8,7 @@ export function LandingPage() {
   return (
     <div className={style.landing}>
           <Link className={style.link} to='/home'>
-            <button className={style.lightbutton}>&gt;&gt;CLICK TO BEGIN&lt;&lt;</button>
+            <button className={style.lightbutton}>CLICK TO BEGIN</button>
           </Link>
     </div>
   )

@@ -5,6 +5,7 @@ import {Country} from '../components/Country';
 import {Pagination} from '../components/Pagination';
 import { Link } from 'react-router-dom';
 import { clearDetail } from '../actions/actions'
+import {Header} from './Header'
 import mundo from '../img/Mundo_hecho_de_Banderas.gif'
 import loading from '../img/loading.gif'
 import style from '../Styles/Countries.module.css';
@@ -30,16 +31,12 @@ export function Countries(){
     dispatch(getAllCountries());
     },[dispatch]);
 
-    
-    //const pagina = pageValidator(currentPage)
-    // Get current country
     const indexOfLastCountry = currentPage * countriesPerPage;
     const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
     const currentCountry = Array.isArray(countries.searchCountry) 
         ? countries.searchCountry?.slice(indexOfFirstCountry, indexOfLastCountry) 
         : countries.allCountries?.slice(indexOfFirstCountry, indexOfLastCountry);
 
-    // Change page
     const paginate = pageNumber => {
         setCurrentPage(pageNumber)
     };
@@ -58,15 +55,15 @@ export function Countries(){
                         flag={country.flag}
                         name={country.name}
                         region={country.region}
-                    />))
-        ,
+                    />)),
 
         searchCountry: 
             !Array.isArray(countries.searchCountry) 
-                ? <><h1>No countries found...</h1>
+                ?   <>
+                    <h1>No countries found...</h1>
                     <img src={mundo} alt='gif mundo'/>
                     <div>
-                    <button className={style.backButton} onClick={() => dispatch(clearDetail())}>Back to countries</button>
+                    <button className={style.lightButton} onClick={() => dispatch(clearDetail())}>Back to all countries</button>
                     </div>
                     </>  
                 : currentCountry?.map(country => (   

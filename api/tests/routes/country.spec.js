@@ -9,7 +9,7 @@ const agent = session(app);
 const country = {
   name: 'Argentina',
   id: 'ARG',
-  flag: 'flag',
+  flag: 'https://argentine-flag-image.com',
   region: 'Americas',
   capital: 'buenos aires'
 };  
@@ -37,15 +37,15 @@ describe('POST /activity', () => {
   });
 });
 
-describe("Rutas activities", () => {
-  describe("GET /activities", () => {
-    it("se espera una respuesta 200", () => agent.get("/activities").expect(200));
+describe('Rutas activities', () => {
+  describe('GET /activities', () => {
+    it('se espera una respuesta 200', () => agent.get('/activities').expect(200));
   });
 });
 
-describe("Obtiene un pais por id", () => {
-  describe("GET /countries/:id", () => {
-    it("Se espera una respuesta 200 se si pasa un id", () =>
-      agent.get("/countries/ARG").expect(200));
+describe('Obtiene un pais por id', () => {
+  describe('GET /countries/:id', () => {
+    it('Se espera una respuesta 200 se si pasa un id', () =>
+      agent.get('/countries/ARG').expect(200));
   });
 });

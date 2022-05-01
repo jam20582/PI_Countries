@@ -1,9 +1,20 @@
-import { GET_ALL_COUNTRIES, GET_ALL_ACTIVITIES, GET_COUNTRY_ID, GET_COUNTRY_NAME , POST_ACTIVITY, REGION_FILTER, ACTIVITY_FILTER, CLEAR_DETAIL, SORT_ORDER_NAME_ASC, SORT_ORDER_NAME_DES, SORT_ORDER_POP_ASC, SORT_ORDER_POP_DES} from "../actions/actions";
+import { GET_ALL_COUNTRIES,
+        GET_ALL_ACTIVITIES, 
+        GET_COUNTRY_ID, GET_COUNTRY_NAME,
+        POST_ACTIVITY,
+        REGION_FILTER,
+        ACTIVITY_FILTER,
+        CLEAR_DETAIL,
+        SORT_ORDER_NAME_ASC,
+        SORT_ORDER_NAME_DES,
+        SORT_ORDER_POP_ASC,
+        SORT_ORDER_POP_DES} from '../actions/actions';
 
 const initialState ={
     allCountries: [],
     countryDetail: {},
-    allActivities: []
+    allActivities: [],
+    message: null
 }
 
 const order = (arr , prop) => {
@@ -47,7 +58,8 @@ function reducer(state=initialState, {type, payload}){
 
         case POST_ACTIVITY:{
             return {
-                ...state, message: payload
+                ...state, 
+                message: payload
             }
         }
 
@@ -73,7 +85,8 @@ function reducer(state=initialState, {type, payload}){
             delete state.searchCountry
             return{
                 ...state,
-                countryDetail:{}
+                countryDetail:{},
+                message: null
             }
         }
 

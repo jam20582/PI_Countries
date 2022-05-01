@@ -48,10 +48,7 @@ export const getCountryDetail = (id) => async dispatch => {
 export const getCountryName = (name) => async dispatch => {
     try {
         const response = await axios(`${URL}?name=${name}`);
-        //console.log(response)
         if(response.data) return dispatch({ type: GET_COUNTRY_NAME, payload: response.data });
-        
-            
     } catch (error) {
         return dispatch({ type: GET_COUNTRY_NAME, payload: {error:'no se encontro datos'} });
     }
@@ -59,8 +56,10 @@ export const getCountryName = (name) => async dispatch => {
 
 export const postActivity = (formInfo) => async dispatch=> {
     try {
-        await axios.post(URL_POST, formInfo);
-        return dispatch({ type: POST_ACTIVITY });
+        let message;
+        await axios.post(URL_POST, formInfo)
+        .then((r) => message = r.data)
+        return dispatch({ type: POST_ACTIVITY, payload: message});
     } catch (error) {
         return console.log(error);
     }
@@ -97,7 +96,6 @@ export const regionFilter = (region) => {
 }
 
 export const activityFilter = (activity) => {
-    //console.log(activity)
     return {
         type: ACTIVITY_FILTER, payload: activity
     }
