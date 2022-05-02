@@ -5,7 +5,6 @@ import {Country} from '../components/Country';
 import {Pagination} from '../components/Pagination';
 import { Link } from 'react-router-dom';
 import { clearDetail } from '../actions/actions'
-import {Header} from './Header'
 import mundo from '../img/Mundo_hecho_de_Banderas.gif'
 import loading from '../img/loading.gif'
 import style from '../Styles/Countries.module.css';

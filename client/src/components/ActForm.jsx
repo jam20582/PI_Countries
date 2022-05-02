@@ -11,7 +11,13 @@ export function ActForm(props) {
     const arrDuration = [];
 
     for (let i = 1; i <= 24; i++) {
-        arrDuration.push(i);
+        let stringToTime = i;
+            if(i < 10) {
+                stringToTime = `0${stringToTime}:00`
+            } else {
+                stringToTime += ':00'
+            }
+        arrDuration.push(stringToTime);
     }
 
     const initialInput = {
@@ -48,13 +54,7 @@ export function ActForm(props) {
         }
         if(e.target.name === 'duration'){
             setErrors(utils.validate({...input, [e.target.name]: e.target.value}))
-            let stringToTime = e.target.value;
-            if(parseInt(e.target.value) < 10) {
-                stringToTime = `0${stringToTime}:00`
-            } else {
-                stringToTime += ':00'
-            }
-            setInput({...input, [e.target.name]: stringToTime})
+            setInput({...input, [e.target.name]: e.target.value})
         }
         if(e.target.name === 'difficulty'){
             setErrors(utils.validate({...input, [e.target.name]: e.target.value}))
@@ -102,7 +102,7 @@ export function ActForm(props) {
             </div>
                 <div className={style.containerDouble}>
                     <div>
-                        <select name='difficulty' className={style.selectBox} onChange={handleOnChange} required >
+                        <select name='difficulty' value={input.difficulty} className={style.selectBox} onChange={handleOnChange} required >
                             <option value=''>Difficulty Select</option>
                             <option value='1'>1</option>
                             <option value='2'>2</option>
@@ -112,15 +112,15 @@ export function ActForm(props) {
                         </select>
                     </div>
                     <div>
-                        <select name='duration' className={style.selectBox} onChange={handleOnChange} required>
+                        <select name='duration' value={input.duration} className={style.selectBox} onChange={handleOnChange} required>
                             <option value=''>Duration Select</option>
                             {arrDuration.map(duration => (
-                                    <option key={duration} value={duration}>{`${duration}:00 Hours`}</option>
+                                    <option key={duration} value={duration}>{duration}</option>
                                 ))}
                         </select>
                     </div>
                     <div>
-                        <select name='season' className={style.selectBox} onChange={handleOnChange} required>
+                        <select name='season' value={input.season} className={style.selectBox} onChange={handleOnChange} required>
                             <option value=''>Season Select</option>
                             <option value='Summer'>Summer</option>
                             <option value='Autumn'>Autumn</option>
@@ -131,7 +131,7 @@ export function ActForm(props) {
                     <div className={style.containerDouble}>
                         <div>
                             <h3>Select the countries to add the activity to</h3>
-                            <select name='countryID' className={style.selectBox} onChange={handleOnChange} required>
+                            <select name='countryID' value={input.countryID[input.countryID.length - 1] ?? ''} className={style.selectBox} onChange={handleOnChange} required>
                                 <option value=''>Countries Select</option>
                                 {allCountries?.map(country => (
                                         <option key={country.id} value={country.id}>{country.name}</option>
@@ -161,7 +161,7 @@ export function ActForm(props) {
                     </div>
                 </div>
             <div style={{display: 'flex', justifyContent: 'center', marginTop:'50px'}}>
-            {utils.isObjEmpty(errors) ? <h3>Button disabled until no errors in data</h3> : 
+            {utils.objTester(errors) ? <h3>Button disabled until no errors in data</h3> : 
             <button className={style.lightButton} type='submit'>Add activity</button>}
             </div>
         </form>

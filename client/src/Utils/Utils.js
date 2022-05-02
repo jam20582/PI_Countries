@@ -18,7 +18,7 @@ export const utils = {
         return errors;
     },
 
-    isObjEmpty: (obj) =>{
+    objTester: (obj) =>{
         for (var prop in obj) {
             if (obj.hasOwnProperty(prop)) return true;
         }    
