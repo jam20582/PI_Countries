@@ -12,11 +12,13 @@ export const SORT_ORDER_NAME_DES = 'SORT_ORDER_NAME_DES';
 export const SORT_ORDER_POP_ASC = 'SORT_ORDER_POP_ASC';
 export const SORT_ORDER_POP_DES = 'SORT_ORDER_POP_DES';
 export const CLEAR_DETAIL = 'CLEAR_DETAIL';
+export const CLEAR_FILTER = 'CLEAR_FILTER';
 
 
 const URL_POST = 'http://localhost:3001/activity'
 const URL = 'http://localhost:3001/countries'
 const URL_ACT = 'http://localhost:3001/activities'
+
 
 export const getAllCountries = () => async dispatch => {
     try {
@@ -103,4 +105,8 @@ export const activityFilter = (activity) => {
 
 export function clearDetail(){
     return {type: CLEAR_DETAIL}
-} 
+}
+
+export function clearFilter(){
+    return {type: CLEAR_FILTER}
+}

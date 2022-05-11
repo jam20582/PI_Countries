@@ -33,7 +33,7 @@
     box-shadow: 0px 6px 8px #777;
 }
 
-.title{
-    font-size: 18px;
-    margin-bottom: 8px;
+.details{
+    text-align:center;
+    padding:5px;
 }

@@ -9,14 +9,12 @@ export function Country(props) {
     <Link className={style.AppLink} to={`/countries/${id}`}>
       <div className={style.card} title={index}>
         <div>
-            <img src={flag} alt={name +' flag'} className={style.image}/>
+          <img src={flag} alt={name +' flag'} className={style.image}/>
         </div>
-          <div className={style.details}>
-            <div className={style.title}>
-                  <h2>{name}</h2>
-            </div>
-            <h4>{`Continent: ${region}`}</h4>
-          </div>
+        <div className={style.details}>
+          <h2>{name}</h2>
+          <h4>{`Continent: ${region}`}</h4>
+        </div>
       </div>
     </Link>
   )

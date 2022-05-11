@@ -12,6 +12,7 @@ export const CountryDetail = () => {
   const dispatch = useDispatch();
 
   let { id } = useParams();
+  
   useEffect(() => {
     dispatch(getCountryDetail(id));
     return () => {

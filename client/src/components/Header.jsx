@@ -75,9 +75,9 @@ export function Header() {
 
     return (
         <header className={style.navbar}>
-                <div className={style.resetButton}>
+                <div className={style.resetDiv}>
                     <Link to='/'>
-                        <button className={style.lightButton} onClick={() => dispatch(clearDetail())}>
+                        <button className={style.resetButton} onClick={() => dispatch(clearDetail())}>
                             <h2>Henry Countries</h2>
                             <h3>App Reset</h3>
                         </button>

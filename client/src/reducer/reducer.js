@@ -8,7 +8,8 @@ import { GET_ALL_COUNTRIES,
         SORT_ORDER_NAME_ASC,
         SORT_ORDER_NAME_DES,
         SORT_ORDER_POP_ASC,
-        SORT_ORDER_POP_DES} from '../actions/actions';
+        SORT_ORDER_POP_DES,
+        CLEAR_FILTER} from '../actions/actions';
 
 const initialState ={
     allCountries: [],
@@ -81,8 +82,14 @@ function reducer(state=initialState, {type, payload}){
             }
         }
 
-        case CLEAR_DETAIL:{
+        case CLEAR_FILTER:{
             delete state.searchCountry
+            return {
+                ...state,
+            }
+        }
+
+        case CLEAR_DETAIL:{
             return{
                 ...state,
                 countryDetail:{},

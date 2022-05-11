@@ -2,7 +2,6 @@ import {render} from '@testing-library/react';
 import {LandingPage} from './LandingPage';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
-
 import configureStore from 'redux-mock-store';
 
 describe('Landing page test', () => {

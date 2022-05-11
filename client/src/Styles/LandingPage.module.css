@@ -29,6 +29,6 @@
 }
 .lightbutton:hover{
     box-shadow: 0px 2px 4px #bbb;
-    transform:scale(4.0);
+    transform:scale(2.0);
     box-shadow: 0px 0px 15px 15px darkgrey;
 }

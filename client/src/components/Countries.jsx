@@ -1,10 +1,9 @@
-import {getAllCountries} from '../actions/actions';
+import {clearFilter, getAllCountries} from '../actions/actions';
 import {useDispatch , useSelector} from 'react-redux';
 import {useEffect, useState} from 'react';
 import {Country} from '../components/Country';
 import {Pagination} from '../components/Pagination';
 import { Link } from 'react-router-dom';
-import { clearDetail } from '../actions/actions'
 import mundo from '../img/Mundo_hecho_de_Banderas.gif'
 import loading from '../img/loading.gif'
 import style from '../Styles/Countries.module.css';
@@ -61,9 +60,6 @@ export function Countries(){
                 ?   <>
                     <h1>No countries found...</h1>
                     <img src={mundo} alt='gif mundo'/>
-                    <div>
-                    <button className={style.lightButton} onClick={() => dispatch(clearDetail())}>Back to all countries</button>
-                    </div>
                     </>  
                 : currentCountry?.map(country => (   
                     <Country key={country.id}
@@ -94,7 +90,7 @@ export function Countries(){
             <div className={style.containerDouble}>
                 {countries.searchCountry ? 
                 <div style={{display: 'flex', justifyContent: 'center', marginTop: '10px'}}>
-                        <button className={style.lightButton} onClick={() => dispatch(clearDetail())}>Back to all countries</button>
+                        <button className={style.lightButton} onClick={() => dispatch(clearFilter())}>Back to all countries</button>
                 </div>
                 : null}
                 <div style={{display: 'flex', justifyContent: 'center', marginTop: '10px'}}>

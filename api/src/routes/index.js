@@ -1,12 +1,11 @@
 const { Router } = require('express');
-const {Country, Activity} = require('../db.js');
-const { Op } = require('sequelize');
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 const getCountries = require('./getCountries');
 const activityCreate = require('./activityCreate');
 const getActivities = require('./getActivities');
+
 
 const router = Router();
 
@@ -16,5 +15,6 @@ const router = Router();
 router.use('/countries', getCountries)
 router.use('/activity', activityCreate)
 router.use('/activities', getActivities)
+
 
 module.exports = router;

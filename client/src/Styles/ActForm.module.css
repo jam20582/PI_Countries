@@ -109,3 +109,30 @@
     background: #FFFFFF;
     border-bottom: 3px solid #333333;
 }
+
+.removeButton{
+    border: 1px solid white;
+    box-shadow: 0px 0px 3px grey;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    color: darkblue;
+    margin: 0px 8px; 
+    padding: 4px 16px;
+    width: auto;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.removeButton:hover{
+    box-shadow: 0px 2px 4px grey;
+}
+
+.tdText{
+    font-size: 14px;
+    font-weight: 600;
+    color: darkblue;
+    margin: 0px 8px; 
+    padding: 4px 16px;
+    width: auto;
+}

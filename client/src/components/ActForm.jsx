@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 import {utils} from '../Utils/Utils';
 import style from '../Styles/ActForm.module.css';
 
-export function ActForm(props) {
+export function ActForm() {
 
     const arrDuration = [];
 
@@ -42,8 +42,9 @@ export function ActForm(props) {
             setInput({...input, [e.target.name]: e.target.value}) 
         }
         if(e.target.name === 'countryID') {
-        let exist = input.countryID.find((c) => c === e.target.value);
-        if(!exist){
+            //let find = allCountries.find((c) => c.id === e.target.value);
+            let exists = input.countryID.find((c) => c === e.target.value);
+            if(!exists){
                 setErrors(utils.validate({...input, [e.target.name]: e.target.value}))
                 setInput({...input, [e.target.name]: [...input.countryID, e.target.value]});
             }   
@@ -130,11 +131,13 @@ export function ActForm(props) {
                     </div>
                     <div className={style.containerDouble}>
                         <div>
+                        {errors.countryID && <h3>{errors.countryID}</h3>}
                             <h3>Select the countries to add the activity to</h3>
-                            <select name='countryID' value={input.countryID[input.countryID.length - 1] ?? ''} className={style.selectBox} onChange={handleOnChange} required>
+                            <select name='countryID' value={input.countryID[input.countryID.length - 1] ?? ''} 
+                            className={style.selectBox} onChange={handleOnChange} >
                                 <option value=''>Countries Select</option>
                                 {allCountries?.map(country => (
-                                        <option key={country.id} value={country.id}>{country.name}</option>
+                                    <option key={country.id} value={country.id}>{country.name}</option>
                                     ))}
                             </select>
                         </div>
@@ -143,7 +146,7 @@ export function ActForm(props) {
                             <table className={style.table}>
                             <thead>
                                 <tr>
-                                <th>Country code</th>
+                                <th>Country</th>
                                 <th>To Add</th>
                                 </tr>
                             </thead>
@@ -151,8 +154,9 @@ export function ActForm(props) {
                                 {input.countryID &&
                                 input.countryID.map((c) => (
                                     <tr key={c}>
-                                    <td>{c}</td>
-                                    <td><button onClick={delCountry} value={c}>Remove</button></td>
+                                    <td className={style.tdText}>{c}</td>
+                                    <td><button className={style.removeButton} onClick={delCountry} 
+                                    value={c}>Remove</button></td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -161,7 +165,7 @@ export function ActForm(props) {
                     </div>
                 </div>
             <div style={{display: 'flex', justifyContent: 'center', marginTop:'50px'}}>
-            {utils.objTester(errors) ? <h3>Button disabled until no errors in data</h3> : 
+            {utils.objTester(errors) ? <h3>Button "Add" disabled until no errors in data</h3> : 
             <button className={style.lightButton} type='submit'>Add activity</button>}
             </div>
         </form>
